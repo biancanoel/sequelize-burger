@@ -1,31 +1,37 @@
-var Burger = require(".../models/burger.js");
+var db = require("../../models");
 
 module.exports = function (app) {
     //see all burgers
     app.get("/api/all", function (req, res) {
-        Burger.findAll({}).then(function (response) {
-            res.json(results);
+        db.burger.findAll({}).then(function (data) {
+            var show = [];
+            console.log("this is it "+data[0].dataValues);
+            for (i=0; i<data.length;i++) {
+                show.push(data[i].dataValues)
+            }
+            var hbsObject = {
+                burgers: show
+            };
+            //console.log(hbsObject);
+            res.render("index", hbsObject);
         });
     });
 
     //add a new burger
-    app.post("api/new", function (req, res) {
-        Burger.create({
-            name: req.body.name,
-            devoured: req.body.dec,
-            price: req.body.price
-        }).then(function (response) {
-            res.json(results)
+    app.post("/api/burgers", function (req, res) {
+        //console.log(req.body)
+        db.burger.create(req.body).then(function (response) {
+            res.json({ response });
         });
     });
 
     //update devoured
-    app.put("api/burger/:id", function (req, res) {
-        Burger.update({
-            updatedAt: req.body.devoured
-        }, {
-                where: req.params.id
-            }).then(function (response) {
+    app.put("/api/burger/:id", function (req, res) {
+        db.burger.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            }).then(function (results) {
                 if (results.changedRows===0) {
                     return res.status(404).end();
                 } else {
@@ -35,8 +41,8 @@ module.exports = function (app) {
     });
 
     //delete a burger
-    app.delete("api/burger/:id", function (req, res) {
-        Burger.destroy({
+    app.delete("/api/burger/:id", function (req, res) {
+        db.burger.destroy({
             where : {
                 id: req.params.id
             }
