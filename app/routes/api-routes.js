@@ -10,7 +10,7 @@ module.exports = function (app) {
     app.get("/api/all", function (req, res) {
         db.burger.findAll({}).then(function (data) {
             var show = [];
-            console.log("this is it "+data[0].dataValues);
+            //console.log("this is it "+data[0].dataValues);
             for (i=0; i<data.length;i++) {
                 show.push(data[i].dataValues)
             }
