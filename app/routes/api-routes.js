@@ -1,6 +1,11 @@
 var db = require("../../models");
 
 module.exports = function (app) {
+    //home 
+    app.get('/', function (req,res){
+        res.redirect('/api/all');
+    })
+
     //see all burgers
     app.get("/api/all", function (req, res) {
         db.burger.findAll({}).then(function (data) {
