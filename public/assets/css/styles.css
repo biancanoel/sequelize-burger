@@ -5,9 +5,59 @@ body {
 
 h1 {
     font-weight: 500;
+    
+}
+
+h1, h2 {
     font-style: italic;
+}
+
+ul {
+    list-style-type: none;
 }
 
 li {
     margin-bottom: 20px;
+    height: 50px;
+    width: 350px
+}
+
+.create-new {
+    border: solid 2px rgb(231, 129, 3);
+    border-radius: 5px;
+    padding: 1%;
+    margin-top: 1%;
+    background-color: rgb(247, 157, 62)
+}
+
+.btn-danger {
+    position: relative;
+    left: 1%
+}
+
+.btn-danger:hover {
+    background-color: rgb(245, 118, 118)
+}
+
+.item {
+    position: absolute;
+    width: 450px
+}
+
+.change-devoured {
+    position: relative;
+    left: 10px;
+}
+
+.change-devoured:hover {
+    background-color: rgb(6, 166, 240)
+}
+
+.info {
+    float: left
+}
+
+.burger-not-eaten,
+.burgers-eaten{
+    padding-left:10px;
 }

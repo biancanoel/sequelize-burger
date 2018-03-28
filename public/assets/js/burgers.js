@@ -18,10 +18,14 @@ $(function () {
             type: "POST",
             data: newBurger
         }).then(
-            function () {
+            function (err, response) {
+                if (response) {
                 console.log("created new burger");
                 // Reload the page to get the updated list
                 location.reload();
+                } else if (err) {
+                    alert('invalid entry');
+                }
             }
         );
     });
@@ -49,10 +53,14 @@ $(function () {
             type: "PUT",
             data: newDevouredState
         }).then(
-            function () {
+            function (err, response) {
+                if (response) {
                 console.log("changed devoured to", newDevouredState);
                 // Reload the page to get the updated list
                 location.reload();
+                } else if (err) {
+                    alert("You must enter a valid name and a numeric price!")
+                }
             }
         );
     });

@@ -22,7 +22,10 @@ module.exports = function (app) {
         //console.log(req.body)
         db.burger.create(req.body).then(function (response) {
             res.json({ response });
-        });
+        }).catch(function(err){
+            res.json(err);
+            console.log(err);
+        })
     });
 
     //update devoured

@@ -2,7 +2,10 @@ module.exports = function (sequelize, DataTypes) {
     var Burger = sequelize.define("burger", {
         name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                len: [1,20]
+            }
         },
         devoured: {
             type: DataTypes.BOOLEAN,
@@ -11,7 +14,10 @@ module.exports = function (sequelize, DataTypes) {
         },
         price: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            validate : {
+                isDecimal: true
+            }
         }
     }, {
             timestamps: false
